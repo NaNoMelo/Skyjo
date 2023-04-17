@@ -71,11 +71,11 @@ public class SkyjjoDeck {
         }
         //close the file
         br.close();
-        //print the deck
+    }
+    public void printDeck() {
         for (int i = 0; i < deck.size(); i++) {
             System.out.println(deck.get(i).getUV() + " " + deck.get(i).getMark() + " " + deck.get(i).getUV_description() + " " + deck.get(i).getType());
         }
-
     }
 
 
