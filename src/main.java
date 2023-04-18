@@ -20,7 +20,6 @@ public class main {
             //start the menu
             launcher.menu();
             launcher.isclicked= false;
-
             //dont do anything until a button is pressed
             while (!launcher.isclicked) {
                 try {
@@ -30,11 +29,8 @@ public class main {
                 }
             }
 
-            //create the players
-            Player[] players = new Player[launcher.nbPlayers];
-            for (int i = 0; i < launcher.nbPlayers; i++) {
-                players[i] = new Player();
-            }
+            //create game
+            Game game = new Game();
 
             //create the deck
             SkyjjoDeck deck = new SkyjjoDeck();
@@ -43,22 +39,41 @@ public class main {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            //print the deck
+            deck.printDeck();
 
-            //print the number of players
-            System.out.println("Number of players: " + launcher.nbPlayers);
-
-            //print the players
+            //create the players
+            Player[] players = new Player[launcher.nbPlayers];
             for (int i = 0; i < launcher.nbPlayers; i++) {
-                System.out.println("Player " + (i + 1) + ": " + players[i].getName());
+                players[i] = new Player();
             }
-            // set the hand of each player
+
+            //set the players name
+            for (int i = 0; i < launcher.nbPlayers; i++) {
+                players[i].setName("Player " + (i + 1));
+            }
+
+            //set the players hand
             for (int i = 0; i < launcher.nbPlayers; i++) {
                 players[i].setHand(deck.getDeck());
             }
-            //print hand of each player
+
+            //print the players hand
             for (int i = 0; i < launcher.nbPlayers; i++) {
-                System.out.println("Player " + (i + 1) + " hand: ");
+                System.out.println(players[i].getName() + " hand: " );
                 players[i].printHand();
+            }
+
+            //initialize the board
+            launcher.board(players);
+
+            //dont do anything until a button is pressed
+            while (!launcher.isclicked) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         } else {
             System.out.println("Game is over");

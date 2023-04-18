@@ -8,6 +8,8 @@ public class Game{
     private boolean gameStatus;
     private Player[] players;
     private SkyjjoDeck deck;
+    private int nmbrOfPlayers;
+
     public void setRound(int round){
         this.round = round;
     }
@@ -38,6 +40,13 @@ public class Game{
     public SkyjjoDeck getDeck(){
         return deck;
     }
+    public void setNbPlayers(int nbPlayers){
+        this.nmbrOfPlayers = nbPlayers;
+    }
+    public int getNbPlayers(){
+        return nmbrOfPlayers;
+    }
+
 
 
 }
