@@ -77,6 +77,9 @@ public class SkyjjoDeck {
             System.out.println(deck.get(i).getUV() + " " + deck.get(i).getMark() + " " + deck.get(i).getUV_description() + " " + deck.get(i).getType());
         }
     }
+    public LinkedList<card> getDeck() {
+        return deck;
+    }
 
 
 }

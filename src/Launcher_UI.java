@@ -8,81 +8,91 @@ import java.awt.event.ActionListener;
 
 
 public class Launcher_UI extends JFrame {
-    boolean gameStatus = true;
-    int numberOfPlayers;
+    public boolean gameStatus = false;
+    public boolean isclicked = false;
+    int nbPlayers;
+    private JFrame frame;
+   // create a startup frame, a button start and a button exit, changing gameStatus to true or false
+    public void start_up() {
+        frame = new JFrame("Skyjjo");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 400);
+        frame.setLayout(new FlowLayout());
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
 
-
-    public void launcher() {
-        //set a frame full screen
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setUndecorated(true);
-        //add a background png
-        JLabel background = new JLabel(new ImageIcon("C:\\Users\\axela\\IdeaProjects\\Skyjo\\powered2.jpg"));
-        background.setBounds(0, 0, 1920, 1080);
-        this.add(background);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
-
-        //create button to start the game
         JButton start = new JButton("Start");
-        start.setBounds(606, 650, 300, 100);
-        this.add(start);
+        JButton exit = new JButton("Exit");
 
-        //create button to quit the game
-        JButton quit = new JButton("Quit");
-        quit.setBounds(606, 750, 300, 100);
-        this.add(quit);
-
-        //if start is clicked gameStatus is true and close the launcher
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gameStatus = true;
-                dispose();
+                isclicked = true;
+                frame.dispose();
             }
         });
-        //if quit is clicked gameStatus is false and close the launcher
-        quit.addActionListener(new ActionListener() {
+
+        exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gameStatus = false;
-                dispose();
+                isclicked = true;
+                frame.dispose();
             }
         });
 
-
+        frame.add(start);
+        frame.add(exit);
+        frame.setVisible(true);
     }
-
-    //create a menu frame att full screen
+    // create a menu frame, a entering integer field, a validation button and a button exit
     public void menu() {
-        //set a frame full screen
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setUndecorated(true);
-        //add a background png
-        JLabel background = new JLabel(new ImageIcon("C:\\Users\\axela\\IdeaProjects\\Skyjo\\powered2.jpg"));
-        background.setBounds(0, 0, 1920, 1080);
-        this.add(background);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
-        //create a entry field for the number of players
-        JTextField numberOfPlayersField = new JTextField();
-        numberOfPlayersField.setBounds(606, 650, 300, 100);
-        this.add(numberOfPlayersField);
-        //create a button to confirm the number of players
-        JButton confirm = new JButton("Confirm");
-        confirm.setBounds(606, 450, 300, 100);
-        this.add(confirm);
-        //if confirm is clicked get the number of players and close the menu
-        confirm.addActionListener(new ActionListener() {
+        frame = new JFrame("Skyjjo");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 400);
+        frame.setLayout(new FlowLayout());
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+
+        JLabel label = new JLabel("Enter the number of players: ");
+        JTextField field = new JTextField(10);
+        JButton validate = new JButton("Validate");
+        JButton exit = new JButton("Exit");
+
+        validate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               numberOfPlayers = Integer.parseInt(numberOfPlayersField.getText());
-                gameStatus = true;
-                dispose();
+                int nbPlayers = Integer.parseInt(field.getText());
+                if (nbPlayers > 0 && nbPlayers < 5) {
+                    System.out.println("Number of players is valid");
+                    gameStatus = true;
+                    isclicked = true;
+                    nbPlayers = Integer.parseInt(field.getText());
+                    frame.dispose();
+                } else {
+                    System.out.println("Number of players is invalid");
+                }
             }
         });
 
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameStatus = false;
+                isclicked = true;
+                frame.dispose();
+            }
+        });
+
+        frame.add(label);
+        frame.add(field);
+        frame.add(validate);
+        frame.add(exit);
+        frame.setVisible(true);
     }
+
+
 
 }
 
