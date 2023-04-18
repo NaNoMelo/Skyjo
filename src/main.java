@@ -1,33 +1,22 @@
 package src;
-import java.io.*;
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 public class main {
-    public static void main(String[] args) throws IOException {
-        //create a deck
-        SkyjjoDeck deck = new SkyjjoDeck();
-        deck.createDeck(1);
-        //create an array of players
-        Player[] players = new Player[4];
-        for (int i = 0; i < 4; i++) {
-            players[i] = new Player();
-            players[i].setHand(deck.deck);
-            players[i].setName("Player " + (i + 1));
-            players[i].setTurn(i + 1);
-            players[i].setScore(0);
+    public static void main(String[] args) {
+    //start the game
+    Launcher_UI launcher = new Launcher_UI();
+    launcher.launcher();
+    //if gameStatus is true start the game
+        if (launcher.gameStatus=true) {
+            Game game = new Game();
+            game.setGameStatus(true);
+            //create a deck
+            SkyjjoDeck deck = new SkyjjoDeck();
+            //open the menu
+            launcher.menu();
         }
-        //print the hand of each player
-        for (int i = 0; i < 4; i++) {
-            System.out.println(players[i].getName());
-            players[i].printHand();
-            System.out.println();
+        else {
+            System.out.println("Game is over");
+            System.exit(0);
         }
-        //show the start menu
-        GameLauncher.start_up_menu(args);
-
     }
 }

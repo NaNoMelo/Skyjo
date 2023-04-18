@@ -9,13 +9,14 @@ public class Player {
         private int score;
 
         public void setHand(LinkedList<SkyjjoDeck.card> deck) {
-            //create a hand of 5 random card from the deck and delete the card from the deck
-            for (int i = 0; i < 5; i++) {
+            //create a hand of 12 random card from the deck and delete the card from the deck, representing all the UV the player will choose during the two year of commun course
+            for (int i = 0; i < 12; i++) {
                 int random = (int) (Math.random() * deck.size());
                 hand.add(deck.get(random));
                 deck.remove(random);
+                }
             }
-        }
+
         public LinkedList<SkyjjoDeck.card> getHand() {
             return hand;
         }
