@@ -5,10 +5,10 @@ public class Player {
     // create array of players
         private String name;
         private int turn;
-        private LinkedList<SkyjjoDeck.card> hand = new LinkedList<SkyjjoDeck.card>();
+        private LinkedList<Card> hand = new LinkedList<Card>();
         private int score;
 
-        public void setHand(LinkedList<SkyjjoDeck.card> deck) {
+        public void setHand(LinkedList<Card> deck) {
             //create a hand of 12 random card from the deck and delete the card from the deck, representing all the UV the player will choose during the two year of commun course
             for (int i = 0; i < 12; i++) {
                 int random = (int) (Math.random() * deck.size());
@@ -17,7 +17,7 @@ public class Player {
                 }
             }
 
-        public LinkedList<SkyjjoDeck.card> getHand() {
+        public LinkedList<Card> getHand() {
             return hand;
         }
         public String getName() {

@@ -19,7 +19,7 @@ public class main {
             System.out.println("Game is running");
             //start the menu
             launcher.menu();
-            launcher.isclicked= false;
+            launcher.isclicked = false;
             //dont do anything until a button is pressed
             while (!launcher.isclicked) {
                 try {
@@ -28,6 +28,7 @@ public class main {
                     e.printStackTrace();
                 }
             }
+            launcher.isclicked = false;
 
             //create game
             Game game = new Game();
@@ -35,6 +36,7 @@ public class main {
             //create the deck
             SkyjjoDeck deck = new SkyjjoDeck();
             try {
+                //create the deck
                 deck.createDeck();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -60,12 +62,14 @@ public class main {
 
             //print the players hand
             for (int i = 0; i < launcher.nbPlayers; i++) {
-                System.out.println(players[i].getName() + " hand: " );
+                System.out.println(players[i].getName() + " hand: ");
                 players[i].printHand();
+                //jump a line
+
             }
 
             //initialize the board
-            launcher.board(players);
+            launcher.board_initialisation(players);
 
             //dont do anything until a button is pressed
             while (!launcher.isclicked) {
@@ -75,8 +79,23 @@ public class main {
                     e.printStackTrace();
                 }
             }
-        } else {
-            System.out.println("Game is over");
+            //print the card on the board
+            Rule rule = new Rule();
+            launcher.isclicked = false;
+            while (!rule.isRespectRule()) {
+                rule.firstround(launcher.card, players[0], 1);
+                if (rule.isRespectRule()) {
+                    System.out.println("You can play this card");
+                } else {
+                    System.out.println("You can't play this card");
+                    launcher.board_initialisation(players);
+                }
+            }
         }
+
+        else{
+                System.out.println("Game is over");
+            }
+
     }
 }
