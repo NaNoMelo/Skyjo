@@ -12,7 +12,7 @@
         public boolean isclicked = false;
         int nbPlayers;
         private JFrame frame;
-        Card card = new Card();
+        private Card card = new Card();
         // create a startup frame, a button start and a button exit, changing gameStatus to true or false
         public void start_up() {
             frame = new JFrame("Skyjjo");
@@ -95,7 +95,7 @@
         }
 
         //create a board frame, a button exit
-        public void board_initialisation(Player[] players) {
+        public void board(Player[] players, int turn) {
             frame = new JFrame("Skyjjo Board");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             //frame is in full screen
@@ -178,24 +178,20 @@
                     buttons[i][j].addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
+                            card = players[finalI].getHand().get(finalJ);
                             isclicked = true;
-                            //look for the card in the hand of the player
-                            for (int k = 0; k < players[finalI].getHand().size(); k++) {
-                                if (players[finalI].getHand().get(k).getUV().equals(buttons[finalI][finalJ].getText())) {
-                                    //if the card is found set the card to the variable card
-                                    card = players[finalI].getHand().get(k);
-                                    //print the card
-                                    System.out.println(card.getUV());
-                                    break;
-                                }
-                            }
                             frame.dispose();
                         }
                     });
                 }
-                frame.setVisible(true);
             }
+            frame.setVisible(true);
 
         }
+        //getter for the card
+        public Card getCard() {
+            return card;
+        }
+
     }
 

@@ -3,7 +3,7 @@ package src;
 import java.io.IOException;
 
 public class main {
-    public static void main(String[] args) {
+    public static void main(String[] args){
         //start the game
         Launcher_UI launcher = new Launcher_UI();
         launcher.start_up();
@@ -69,30 +69,27 @@ public class main {
             }
 
             //initialize the board
-            launcher.board_initialisation(players);
-
-            //dont do anything until a button is pressed
-            while (!launcher.isclicked) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            //print the card on the board
             Rule rule = new Rule();
-            launcher.isclicked = false;
-            while (!rule.isRespectRule()) {
-                rule.firstround(launcher.card, players[0], 1);
-                if (rule.isRespectRule()) {
-                    System.out.println("You can play this card");
-                } else {
-                    System.out.println("You can't play this card");
-                    launcher.board_initialisation(players);
+
+            while (!rule.getRespectRule()) {
+                launcher.board(players, game.getTurn());
+                game.setTurn(0);
+
+                //dont do anything until a button is pressed
+                while (!launcher.isclicked) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
+                launcher.isclicked = false;
+
+                //check if the card belongs to the player
+                rule.isfrom(launcher.getCard(), players[game.getTurn()], game.getTurn());
+                //
             }
         }
-
         else{
                 System.out.println("Game is over");
             }
