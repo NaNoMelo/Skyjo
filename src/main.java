@@ -3,10 +3,14 @@ package src;
 import java.io.IOException;
 
 public class main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
+
         //start the game
-        Launcher_UI launcher = new Launcher_UI();
+        Game game = new Game();
+        Launcher launcher = new Launcher();
         launcher.start_up();
+        Rule rule = new Rule();
+
         //dont do anything until a button is pressed
         while (!launcher.isclicked) {
             try {
@@ -15,11 +19,14 @@ public class main {
                 e.printStackTrace();
             }
         }
+
         if (launcher.gameStatus) {
             System.out.println("Game is running");
+
             //start the menu
-            launcher.menu();
-            launcher.isclicked = false;
+            launcher.menu(game);
+            launcher.isclicked= false;
+
             //dont do anything until a button is pressed
             while (!launcher.isclicked) {
                 try {
@@ -28,19 +35,17 @@ public class main {
                     e.printStackTrace();
                 }
             }
-            launcher.isclicked = false;
 
             //create game
-            Game game = new Game();
 
             //create the deck
             SkyjjoDeck deck = new SkyjjoDeck();
             try {
-                //create the deck
                 deck.createDeck();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
             //print the deck
             deck.printDeck();
 
@@ -59,22 +64,19 @@ public class main {
             for (int i = 0; i < launcher.nbPlayers; i++) {
                 players[i].setHand(deck.getDeck());
             }
+            game.setPlayers(players);
 
-            //print the players hand
-            for (int i = 0; i < launcher.nbPlayers; i++) {
-                System.out.println(players[i].getName() + " hand: ");
-                players[i].printHand();
-                //jump a line
 
+            //print the players hand from game
+            for (int i = 0; i < game.getNbPlayers(); i++) {
+                System.out.println(game.getPlayers()[i].getName());
+                game.getPlayers()[i].printHand();
             }
+            game.setTurn(0);
+            launcher.isclicked= false;
 
-            //initialize the board
-            Rule rule = new Rule();
 
-            while (!rule.getRespectRule()) {
-                launcher.board(players, game.getTurn());
-                game.setTurn(0);
-
+            launcher.board(game);
                 //dont do anything until a button is pressed
                 while (!launcher.isclicked) {
                     try {
@@ -83,16 +85,11 @@ public class main {
                         e.printStackTrace();
                     }
                 }
-                launcher.isclicked = false;
+                launcher.isclicked= false;
 
-                //check if the card belongs to the player
-                rule.isfrom(launcher.getCard(), players[game.getTurn()], game.getTurn());
-                //
-            }
+
+        } else {
+            System.out.println("Game is over");
         }
-        else{
-                System.out.println("Game is over");
-            }
-
     }
 }

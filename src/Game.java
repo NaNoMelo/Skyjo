@@ -2,13 +2,15 @@ package src;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Game{
+public class Game extends Player {
     private int round;
     private int turn;
     private boolean gameStatus;
     private Player[] players;
     private SkyjjoDeck deck;
     private int nmbrOfPlayers;
+    private boolean isclicked = false;
+    private JFrame frame;
 
     public void setRound(int round){
         this.round = round;
@@ -22,9 +24,6 @@ public class Game{
     public void setPlayers(Player[] players){
         this.players = players;
     }
-    public void setDeck(SkyjjoDeck deck){
-        this.deck = deck;
-    }
     public int getRound(){
         return round;
     }
@@ -37,15 +36,25 @@ public class Game{
     public Player[] getPlayers(){
         return players;
     }
-    public SkyjjoDeck getDeck(){
-        return deck;
-    }
     public void setNbPlayers(int nbPlayers){
         this.nmbrOfPlayers = nbPlayers;
     }
     public int getNbPlayers(){
         return nmbrOfPlayers;
     }
+    public boolean getIsclicked(){
+        return isclicked;
+    }
+    public void setIsclicked(boolean isclicked){
+        this.isclicked = isclicked;
+    }
+    public JFrame getFrame(){
+        return frame;
+    }
+    public void setFrame(JFrame frame){
+        this.frame = frame;
+    }
+
 
 
 
