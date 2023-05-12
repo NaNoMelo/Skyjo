@@ -24,7 +24,8 @@ public class SkyjjoDeck extends Card{
             Card card = new Card();
             //define the card
             card.setUV(parts[1]);
-            card.setMark(parts[3]);
+            int mark = Integer.parseInt(parts[3].trim());
+            card.setMark(mark);
             card.setUV_description(parts[2]);
             card.setType(parts[0]);
             //add the card to the deck
@@ -38,7 +39,7 @@ public class SkyjjoDeck extends Card{
    //print the deck
     public void printDeck() {
         for (int i = 0; i < deck.size(); i++) {
-            System.out.println(deck.get(i).getUV() + " " + deck.get(i).getMark() + " " + deck.get(i).getType());
+            System.out.println(deck.get(i).getType() + " " + deck.get(i).getUV() + " " + deck.get(i).getUV_description() + " " + deck.get(i).getMark());
         }
     }
 

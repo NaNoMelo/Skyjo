@@ -52,7 +52,6 @@ public class Board extends JFrame{
             frame.add(panels[i]);
         }
 
-
         //add in each panel as many buttons as there are cards in the hand of the player
         buttons = new JButton[game.getNbPlayers()][game.getPlayers()[0].getHand().size()];
         for (int i = 0; i < game.getNbPlayers(); i++) {
@@ -72,7 +71,6 @@ public class Board extends JFrame{
             }
         }
 
-
         //create a button exit
         JButton exit = new JButton("Exit");
         exit.setPreferredSize(new Dimension(100, 50));
@@ -88,6 +86,7 @@ public class Board extends JFrame{
                 frame.dispose();
             }
         });
+
         //add a button in which the rest of the deck will be displayed
         JButton deck = new JButton("Pioche");
         deck.setPreferredSize(new Dimension(100, 50));
@@ -128,12 +127,11 @@ public class Board extends JFrame{
         for (int i = 0; i < game.getNbPlayers(); i++) {
             for (int j = 0; j < game.getPlayers()[0].getHand().size(); j++) {
                 buttons[i][j].setText(String.valueOf(game.getPlayers()[i].getHand().get(j).getUV()));
-                buttons[i][j].setForeground(game.getPlayers()[i].getHand().get(j).isIsrevealed() ? Color.green : new Color(0, 0, 0, 0));
+                buttons[i][j].setForeground(game.getPlayers()[i].getHand().get(j).isIsrevealed() ? Color.black : new Color(0, 0, 0, 0));
             }
         }
         frame.repaint();
     }
-
     public Card getCard() {
         return card;
     }

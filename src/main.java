@@ -2,9 +2,9 @@ package src;
 
 import java.io.IOException;
 
+
 public class main {
     public static void main(String[] args) {
-
         //start the game
         Game game = new Game();
         Launcher launcher = new Launcher();
@@ -79,17 +79,36 @@ public class main {
             game.setTurn(0);
             launcher.isclicked= false;
 
-                board.show_board(game);
-                //dont do anything until a button is pressed
-                while (!board.isclicked) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                pop_up pop_up = new pop_up();
+                pop_up.indication("Chaque joueur doit choisir deux cartes.");
+            board.show_board(game);
+
+                //ask the players to choose two cards
+                for (int i = 0; i < game.getNbPlayers(); i++) {
+                    for (int j = 0; j < 2; j++) {
+                        board.isclicked = false;
+                        game.setTurn(i);
+                        while (!board.isclicked) {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        //set score of the player
+                        game.getPlayers()[i].setScore(game.getPlayers()[i].getScore()+board.getCard().getMark());
+                        board.isclicked= false;
+                        board.updateBoard(game);
                     }
                 }
-                board.isclicked= false;
-                board.updateBoard(game);
+                //pop up to show the score of each player
+                pop_up.indication("Voici les scores des joueurs :");
+                for (int i = 0; i < game.getNbPlayers(); i++) {
+                    System.out.println(game.getPlayers()[i].getName() + " " + game.getPlayers()[i].getScore());
+                }
+
+
         } else {
             System.out.println("Game is over");
         }

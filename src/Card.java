@@ -3,7 +3,7 @@ package src;
 public class Card {
     private String type;
     private String UV;
-    private String mark;
+    private int mark;
     private String UV_description;
     private boolean isrevealed = false;
 
@@ -12,7 +12,7 @@ public class Card {
         return UV;
     }
 
-    public String getMark() {
+    public int getMark() {
         return mark;
     }
 
@@ -28,7 +28,7 @@ public class Card {
         this.UV = UV;
     }
 
-    public void setMark(String mark) {
+    public void setMark(int mark) {
         this.mark = mark;
     }
 
@@ -39,7 +39,7 @@ public class Card {
         this.type = type;
     }
 //Card constructor
-    public Card(String UV, String mark, String UV_description, String type) {
+    public Card(String UV, int mark, String UV_description, String type) {
         this.UV = UV;
         this.mark = mark;
         this.UV_description = UV_description;
