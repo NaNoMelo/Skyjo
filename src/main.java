@@ -68,6 +68,7 @@ public class main {
             }
             game.setPlayers(players);
 
+
             //create the board
             Board board = new Board();
 
@@ -96,8 +97,13 @@ public class main {
                             }
                         }
 
-                        //set score of the player
-                        game.getPlayers()[i].setScore(game.getPlayers()[i].getScore()+board.getCard().getMark());
+
+                        //set the score of the card
+                        board.getCard().setScore();
+
+
+                        //add the score to the player
+                        game.getPlayers()[i].setScore(game.getPlayers()[i].getScore() + board.getCard().getScore());
                         board.isclicked= false;
                         board.updateBoard(game);
                     }
@@ -107,6 +113,26 @@ public class main {
                 for (int i = 0; i < game.getNbPlayers(); i++) {
                     System.out.println(game.getPlayers()[i].getName() + " " + game.getPlayers()[i].getScore());
                 }
+
+                //player with the lowest score start the game
+                int min = game.getPlayers()[0].getScore();
+                int firstPlayer = 0;
+                for (int i = 0; i < game.getNbPlayers(); i++) {
+                    if (game.getPlayers()[i].getScore() < min) {
+                        min = game.getPlayers()[i].getScore();
+                        firstPlayer = i;
+                    }
+                }
+                game.setTurn(firstPlayer);
+                //if index = nbPlayers then return to the first player
+                if (firstPlayer == game.getNbPlayers()) {
+                    game.setTurn(0);
+                }
+
+                SkyjjoDeck draftDeck = deck;
+                
+
+                //The game starts now
 
 
         } else {

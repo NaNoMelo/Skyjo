@@ -72,7 +72,7 @@ public class Board extends JFrame{
         }
 
         //create a button exit
-        JButton exit = new JButton("Exit");
+        JButton exit = new JButton("Draw");
         exit.setPreferredSize(new Dimension(100, 50));
 
         JPanel exitPanel = new JPanel();
@@ -86,11 +86,27 @@ public class Board extends JFrame{
                 frame.dispose();
             }
         });
+        //event listener for the draw button
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isclicked = true;
+                //set the card a the last card of the deck
+                card = game.getDeck().getLast();
+                //print the card
+                System.out.println(card.getUV());
+
+                frame.dispose();
+            }
+        });
+
 
         //add a button in which the rest of the deck will be displayed
         JButton deck = new JButton("Pioche");
         deck.setPreferredSize(new Dimension(100, 50));
         frame.add(deck, BorderLayout.CENTER);
+
+
 
         //add a button in which the discard pile will be displayed
         JButton discard = new JButton("Défausse");

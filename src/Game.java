@@ -2,7 +2,7 @@ package src;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Game extends Player {
+public class Game {
     private int round;
     private int turn;
     private boolean gameStatus;
@@ -11,7 +11,13 @@ public class Game extends Player {
     private int nmbrOfPlayers;
     private boolean isclicked = false;
     private JFrame frame;
+    private LinkedList<Card> discardPile;
 
+
+//getters and setters
+    public LinkedList<Card> getDeck(){
+        return deck.getDeck();
+    }
     public void setRound(int round){
         this.round = round;
     }

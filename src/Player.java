@@ -40,6 +40,7 @@ public class Player {
             this.score = score;
         }
 
+
         public void setTurn(int turn) {
             this.turn = turn;
         }
