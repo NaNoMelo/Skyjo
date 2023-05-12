@@ -20,7 +20,7 @@ public class Board extends JFrame{
         frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 
         // background is png adjusted to the size of the frame
-        ImageIcon background = new ImageIcon("C:\\Users\\axela\\IdeaProjects\\Skyjo\\fond.png");
+        ImageIcon background = new ImageIcon(".\\fond.png");
 
         //adjust the size of the background
         Image img = background.getImage();

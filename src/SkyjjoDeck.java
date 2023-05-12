@@ -7,7 +7,7 @@ public class SkyjjoDeck extends Card{
     LinkedList<Card> deck = new LinkedList<Card>();
     public void createDeck() throws IOException {
         //open the file UV_TC.txt, read line per line and define each card
-        File file = new File("C:\\Users\\aantunes\\IdeaProjects\\Skyjo\\uv.txt");
+        File file = new File(".\\uv.txt");
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(file));
