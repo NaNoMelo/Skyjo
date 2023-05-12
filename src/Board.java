@@ -9,6 +9,7 @@ public class Board extends JFrame{
     private JFrame frame;
     public boolean isclicked = false;
     private Card card = new Card();
+    private JButton[][] buttons; // Declare as a class-level variable
 
 
     public void show_board(Game game) {
@@ -53,7 +54,7 @@ public class Board extends JFrame{
 
 
         //add in each panel as many buttons as there are cards in the hand of the player
-        JButton[][] buttons = new JButton[game.getNbPlayers()][game.getPlayers()[0].getHand().size()];
+        buttons = new JButton[game.getNbPlayers()][game.getPlayers()[0].getHand().size()];
         for (int i = 0; i < game.getNbPlayers(); i++) {
             for (int j = 0; j < game.getPlayers()[0].getHand().size(); j++) {
                 buttons[i][j] = new JButton();
@@ -124,23 +125,12 @@ public class Board extends JFrame{
         frame.setVisible(true);
     }
     public void updateBoard(Game game) {
-        JButton[][] buttons = new JButton[game.getNbPlayers()][game.getPlayers()[0].getHand().size()];
         for (int i = 0; i < game.getNbPlayers(); i++) {
             for (int j = 0; j < game.getPlayers()[0].getHand().size(); j++) {
-                buttons[i][j] = new JButton();
-                buttons[i][j].setPreferredSize(new Dimension(100, 150)); //adjust the size as needed
-                //write the value of the card on the button
                 buttons[i][j].setText(String.valueOf(game.getPlayers()[i].getHand().get(j).getUV()));
-                //set foreground color to transparent
-                if (game.getPlayers()[i].getHand().get(j).isIsrevealed()){
-                    buttons[i][j].setForeground(Color.green);
-                } else {
-                    //transparent foreground
-                    buttons[i][j].setForeground(new Color(0, 0, 0, 0));
-                }
+                buttons[i][j].setForeground(game.getPlayers()[i].getHand().get(j).isIsrevealed() ? Color.green : new Color(0, 0, 0, 0));
             }
         }
-        frame.revalidate();
         frame.repaint();
     }
 

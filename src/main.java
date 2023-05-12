@@ -89,6 +89,7 @@ public class main {
                     }
                 }
                 board.isclicked= false;
+                board.updateBoard(game);
         } else {
             System.out.println("Game is over");
         }
