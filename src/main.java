@@ -11,6 +11,7 @@ public class main {
         launcher.start_up();
         Rule rule = new Rule();
 
+
         //dont do anything until a button is pressed
         while (!launcher.isclicked) {
             try {
@@ -37,6 +38,7 @@ public class main {
             }
 
             //create game
+            game.setNbPlayers(launcher.nbPlayers);
 
             //create the deck
             SkyjjoDeck deck = new SkyjjoDeck();
@@ -66,6 +68,8 @@ public class main {
             }
             game.setPlayers(players);
 
+            //create the board
+            Board board = new Board();
 
             //print the players hand from game
             for (int i = 0; i < game.getNbPlayers(); i++) {
@@ -75,19 +79,16 @@ public class main {
             game.setTurn(0);
             launcher.isclicked= false;
 
-
-            launcher.board(game);
+                board.show_board(game);
                 //dont do anything until a button is pressed
-                while (!launcher.isclicked) {
+                while (!board.isclicked) {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-                launcher.isclicked= false;
-
-
+                board.isclicked= false;
         } else {
             System.out.println("Game is over");
         }

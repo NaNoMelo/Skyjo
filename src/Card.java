@@ -5,6 +5,8 @@ public class Card {
     private String UV;
     private String mark;
     private String UV_description;
+    private boolean isrevealed = false;
+
 
     public String getUV() {
         return UV;
@@ -44,6 +46,12 @@ public class Card {
         this.type = type;
     }
     public Card() {
+    }
+    public boolean isIsrevealed() {
+        return isrevealed;
+    }
+    public void setIsrevealed(boolean isrevealed) {
+        this.isrevealed = isrevealed;
     }
 }
 
